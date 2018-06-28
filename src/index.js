@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom'
 import store from './stores'
 import {Provider} from 'react-redux'
 import '../assets/scss/styles.scss'
-import {Home} from './components/containers/'
-
+import {Home, About, NotFound} from './components/pages/'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 const app = (
-    <Provider store = {store.configure()}>
-    <Home/>
-    </Provider>
+  <Provider store={store.configure()}>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/about" component={About}/>
+        <Route component={NotFound}/>
+      </Switch>
+    </Router>
+  </Provider>
 )
 
 ReactDOM.render(app, document.getElementById('root'))

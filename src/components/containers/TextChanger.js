@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import Text from '../presentations/Text'
 
-class Home extends React.Component {
+class TextChanger extends React.Component {
   constructor(){
     super()
     this.state={
@@ -20,7 +20,6 @@ class Home extends React.Component {
   render() {
     return (
       <div id="body-container">
-        <h1>Home</h1>
         <input onChange = {this.handleChange.bind(this)}></input>
         <button onClick ={this.displayText.bind(this)}>Change Display Text</button>
         <Text text={this.props.text}/>
@@ -42,4 +41,4 @@ const dispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(stateToProps, dispatchToProps)(Home);
+export default connect(stateToProps, dispatchToProps)(TextChanger);

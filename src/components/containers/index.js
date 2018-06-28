@@ -1,5 +1,5 @@
-import Home from './Home'
+import TextChanger from './TextChanger'
 
 export {
-    Home
+    TextChanger
 }
