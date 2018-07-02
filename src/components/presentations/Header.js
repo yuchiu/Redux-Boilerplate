@@ -4,12 +4,10 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-          Home
+          Redux Boilerplate
       </div>
-
     )
   }
 }
-
 
 export default Home;

@@ -17,22 +17,24 @@ module.exports = {
   devtool: '#source-map',
 
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /(node_modules)/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['react', 'es2015']
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015']
+        }
+      }, {
+        test: /\.(css|scss|sass)$/,
+        loader: 'style-loader!css-loader!postcss-loader!sass-loader',
+        include: path.join(__dirname, 'assets', 'scss')
+      }, {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader',
+        include: path.join(__dirname, 'assets', 'img')
       }
-    }, {
-      test: /\.(css|scss|sass)$/,
-      loader: 'style-loader!css-loader!postcss-loader!sass-loader',
-      include: path.join(__dirname, 'assets', 'scss')
-    }, {
-      test: /\.(png|jpg)$/,
-      loader: 'file-loader',
-      include: path.join(__dirname, 'assets', 'img')
-    }]
+    ]
   },
 
   devServer: {
@@ -43,32 +45,34 @@ module.exports = {
     stats: 'errors-only'
   },
 
-  plugins: process.env.NODE_ENV === 'production' ? [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: {
-        warnings: true,
-        drop_console: true
-      }
-    }),
-    new htmlWebpackPlugin({
-      template: path.join(__dirname, 'index.html'),
-      hash: true
-    })
-  ] : [
-    new htmlWebpackPlugin({
-      template: path.join(__dirname, 'index.html'),
-      hash: true
-    }),
-    new webpack.HotModuleReplacementPlugin(),
+  plugins: process.env.NODE_ENV === 'production'
+    ? [
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
+      new webpack
+        .optimize
+        .UglifyJsPlugin({
+          minimize: true,
+          compress: {
+            warnings: true,
+            drop_console: true
+          }
+        }),
+      new htmlWebpackPlugin({
+        template: path.join(__dirname, 'index.html'),
+        hash: true
+      })
+    ]
+    : [
+      new htmlWebpackPlugin({
+        template: path.join(__dirname, 'index.html'),
+        hash: true
+      }),
+      new webpack.HotModuleReplacementPlugin(),
 
-    new OpenBrowserPlugin({
-      url: 'http://localhost:8080'
-    })
-  ]
+      new OpenBrowserPlugin({url: 'http://localhost:8080'})
+    ]
 }

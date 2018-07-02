@@ -6,10 +6,8 @@ class Home extends React.Component {
       <div>
           {this.props.text}
       </div>
-
     )
   }
 }
-
 
 export default Home;
