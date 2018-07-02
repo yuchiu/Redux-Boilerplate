@@ -2,7 +2,7 @@
 
 Hot loading enabled, CSS postfixer and prefixer enabled, ready to run on localhost.
 
-### Usage 
+### Usage
 #### 1. First install package cross-env globally
 
 ```

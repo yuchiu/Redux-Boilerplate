@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import store from './stores'
 import {Provider} from 'react-redux'
 import Router from './Router'
-import '../assets/scss/styles.scss'
+import '../assets/scss/main.scss'
 
 const app = (
   <Provider store={store.configure()}>
