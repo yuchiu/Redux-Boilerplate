@@ -11,7 +11,6 @@ export default (state = initialState, action) => {
         case constants.FETCH_TEXT:
             newState['text'] = action.payload
             return newState
-            break;
         default:
             return state
     }
