@@ -1,8 +1,5 @@
-import Header from "./Header"
-import NavBar from "./NavBar"
+import NavBar from "./NavBar";
+import Text from "./Text";
+import Logo from "./Logo";
 
-export{
-    Header,
-    NavBar,
-    Text
-}
+export { NavBar, Text, Logo };

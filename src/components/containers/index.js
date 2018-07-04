@@ -1,5 +1,3 @@
-import TextChanger from './TextChanger'
+import TextChanger from "./TextChanger";
 
-export {
-    TextChanger
-}
+export { TextChanger };

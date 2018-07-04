@@ -1,6 +1,3 @@
-import textReducer from './textReducer'
+import textReducer from "./textReducer";
 
-
-export {
-    textReducer
-}
+export { textReducer };
