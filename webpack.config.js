@@ -25,7 +25,7 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: "babel-loader",
         query: {
-          presets: ["react", "es2015"]
+          presets: ["react", "es2017"]
         }
       },
       {
@@ -49,33 +49,26 @@ module.exports = {
     stats: "errors-only"
   },
 
-  plugins:
-    process.env.NODE_ENV === "production"
-      ? [
-          new webpack.DefinePlugin({
-            "process.env": {
-              NODE_ENV: JSON.stringify("production")
-            }
-          }),
-          new webpack.optimize.UglifyJsPlugin({
-            minimize: true,
-            compress: {
-              warnings: true,
-              drop_console: true
-            }
-          }),
-          new htmlWebpackPlugin({
-            template: path.join(__dirname, "index.html"),
-            hash: true
-          })
-        ]
-      : [
-          new htmlWebpackPlugin({
-            template: path.join(__dirname, "index.html"),
-            hash: true
-          }),
-          new webpack.HotModuleReplacementPlugin(),
+  plugins: process.env.NODE_ENV === 'production' ? [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new Uglify(),
+    new htmlWebpackPlugin({
+      template: path.join(__dirname, 'index.html'),
+      hash: true
+    })
+  ] : [
+    new htmlWebpackPlugin({
+      template: path.join(__dirname, 'index.html'),
+      hash: true
+    }),
+    new webpack.HotModuleReplacementPlugin(),
 
-          new OpenBrowserPlugin({ url: "http://localhost:8080" })
-        ]
-};
+    new OpenBrowserPlugin({
+      url: 'http://localhost:5000'
+    })
+  ]
+}
