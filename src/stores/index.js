@@ -1,22 +1,14 @@
-import { applyMiddleware, createStore, combineReducers } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { textReducer } from "../reducers";
 
-let store = null;
-export default {
-  configure: () => {
-    const rootReducers = combineReducers({
-      text: textReducer
-    });
-    store = createStore(
-      rootReducers,
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+import rootReducer from "@/reducers";
+
+export default createStore(
+  rootReducer,
+  process.env.NODE_ENV === "production"
+    ? applyMiddleware(thunk)
+    : (window.__REDUX_DEVTOOLS_EXTENSION__ &&
         window.__REDUX_DEVTOOLS_EXTENSION__(),
-      applyMiddleware(thunk, logger)
-    );
-    return store;
-  },
-
-  currentStore: () => store
-};
+      applyMiddleware(thunk, logger))
+);
