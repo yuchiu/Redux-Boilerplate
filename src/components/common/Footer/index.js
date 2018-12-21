@@ -6,7 +6,7 @@ const Footer = () => (
   <footer className="footer-wrapper">
     <a
       className="footer-item footer-item--link"
-      href="https://github.com/yuchiu/react-boilerplate"
+      href="https://github.com/yuchiu/redux-boilerplate"
       target="_blank"
       rel="noopener noreferrer"
     >
