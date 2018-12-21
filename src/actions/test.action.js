@@ -1,9 +1,9 @@
-import constants from "../constants";
+import actionTypes from "@/actionTypes";
 
 export default {
-  fetchText: text => dispatch => {
+  changeText: text => dispatch => {
     dispatch({
-      type: constants.FETCH_TEXT,
+      type: actionTypes.TEXT_CHANGE,
       payload: text
     });
   }

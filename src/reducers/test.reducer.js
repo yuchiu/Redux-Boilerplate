@@ -1,13 +1,13 @@
-import constants from "../constants";
+import actionTypes from "@/actionTypes";
 
 const initialState = {
-  text: "Original Display Text"
+  text: "some random text"
 };
 
 export default (state = initialState, action) => {
   const newState = { ...state };
   switch (action.type) {
-    case constants.FETCH_TEXT:
+    case actionTypes.TEXT_CHANGE:
       newState.text = action.payload;
       return newState;
 
@@ -15,8 +15,3 @@ export default (state = initialState, action) => {
       return state;
   }
 };
-
-/* state selectors */
-const getText = state => state.testReducer.text;
-
-export { getText };

@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-class Text extends React.PureComponent {
-  render() {
-    const { text } = this.props;
-    return <div>Display Text: {text}</div>;
-  }
-}
+const Text = ({ text, cssClass }) => (
+  <div className={`${cssClass}`}>Displaying: {text}</div>
+);
+
 Text.propTypes = {
+  cssClass: PropTypes.string,
   text: PropTypes.string
 };
 

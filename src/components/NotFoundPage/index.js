@@ -1,29 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { NavBar } from "../common";
-import Content from "./Content";
+import "./index.scss";
 
-class NotFoundPage extends React.Component {
-  render() {
-    const {
-      match: {
-        params: { unfoundLocation }
-      }
-    } = this.props;
-    return (
-      <React.Fragment>
-        <main className="notfoundpage">
-          <NavBar />
-          <Content unfoundLocation={unfoundLocation} />
-        </main>
-      </React.Fragment>
-    );
+const NotFoundPage = ({
+  match: {
+    params: { unfoundLocation }
   }
-}
+}) => (
+  <div className="not-found-page page-wrapper">
+    <p>Oops... location "{unfoundLocation}" is not found.</p>
+  </div>
+);
 
 NotFoundPage.propTypes = {
-  match: PropTypes.object.isRequired
+  unfoundLocation: PropTypes.object
 };
 
 export default NotFoundPage;

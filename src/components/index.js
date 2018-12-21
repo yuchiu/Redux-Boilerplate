@@ -2,40 +2,25 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "./index.scss";
-import TestPage from "./TestPage";
+import { Navbar, Footer } from "./common";
+import LandingPage from "./LandingPage";
 import AboutPage from "./AboutPage";
 import NotFoundPage from "./NotFoundPage";
-import ErrorPage from "./ErrorPage";
+import TestPage from "./TestPage";
 
-class Router extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasError: false
-    };
-  }
+const Routes = () => (
+  <BrowserRouter>
+    <React.Fragment>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/test" component={TestPage} />
+        <Route exact path="/:unfoundLocation" component={NotFoundPage} />
+      </Switch>
+      <Footer />
+    </React.Fragment>
+  </BrowserRouter>
+);
 
-  componentDidCatch(error, info) {
-    console.log(error, info);
-    this.setState({
-      hasError: true
-    });
-  }
-
-  render() {
-    const { hasError } = this.state;
-    return hasError ? (
-      <ErrorPage />
-    ) : (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={TestPage} />
-          <Route exact path="/about" component={AboutPage} />
-          <Route exact path="/:unfoundLocation" component={NotFoundPage} />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
-
-export default Router;
+export default Routes;
